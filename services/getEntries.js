@@ -9,22 +9,16 @@ const getEntryData = async (req, res, next) => {
     process.env.ENVIROMENT_NAME
   );
 
-  const Query = await Stack.ContentType("contentstack_data").Entry(
-    process.env.ENTRY_ID
-  );
-
-  Query.includeReference(["saima_navbar", "bltcc83b47f7b8add8c"])
-    .fetch()
-    .then(
-      function success(entry) {
-        console.log(entry.toJSON());
-        res.status(200).send(entry.toJSON());
-      },
-      function error(err) {
-        console.log(err);
-        res.send(err);
-      }
-    );
+  try{
+    const Query = await Stack.ContentType('contentstack_data').Entry(process.env.ENTRY_ID).includeReference(['navbar','banner','clients','section','footer']).fetch()
+    let data = await Query.toJSON()
+    // console.log(data);
+    res.status(200).send(data);
+  }
+  catch(err){
+    console.log(err);
+    res.status(404).send(err);
+  }  
 };
 
 module.exports.getEntryData = getEntryData;
