@@ -11,7 +11,6 @@
   "author": "Umesh More",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
     "contentstack": "^3.13.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getEntryData } = require("../services/getEntries");
+const { getEntryData } = require("../services/cs-api");
 
 router.route("/homepage").get(getEntryData);
 

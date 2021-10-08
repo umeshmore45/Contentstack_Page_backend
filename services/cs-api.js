@@ -10,9 +10,11 @@ const getEntryData = async (req, res, next) => {
   );
 
   try{
-    const Query = await Stack.ContentType('contentstack_data').Entry(process.env.ENTRY_ID).includeReference(['navbar','banner','clients','section','footer']).fetch()
+    const Query = await Stack.ContentType('contentstack_data')
+      .Entry(process.env.ENTRY_ID)
+      .includeReference(['navbar','banner','clients','section','footer'])
+      .fetch()
     let data = await Query.toJSON()
-    // console.log(data);
     res.status(200).send(data);
   }
   catch(err){
@@ -21,4 +23,6 @@ const getEntryData = async (req, res, next) => {
   }  
 };
 
-module.exports.getEntryData = getEntryData;
+module.exports ={
+  getEntryData
+};
